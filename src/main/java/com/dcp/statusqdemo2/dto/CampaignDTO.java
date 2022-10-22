@@ -24,9 +24,4 @@ public class CampaignDTO {
 
     private List<String> educationAudience;
 
-//    private List<EducationAudience> educationAudiences;
-//    public List<EducationAudience> getEducationAudience() { return educationAudiences; }
-//    public void setEducationAudience(List<EducationAudience> educationAudiences){
-//        this.educationAudiences = educationAudiences;
-//    }
 }
