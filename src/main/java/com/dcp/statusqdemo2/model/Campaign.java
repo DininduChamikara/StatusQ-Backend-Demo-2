@@ -30,4 +30,7 @@ public class Campaign {
     @OneToMany(mappedBy = "campaignEducationAudience")
     private Set<EducationAudience> educationAudiences;
 
+    @OneToMany(mappedBy = "campaignAgeAudience")
+    private Set<AgeAudience> ageAudiences;
+
 }
