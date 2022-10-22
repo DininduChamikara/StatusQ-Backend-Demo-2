@@ -15,6 +15,7 @@ import java.util.List;
 @Setter
 public class CampaignDTO {
     private int campaignId;
+    private int userId;
     private String platform;
     private int numberOfViews;
     private int viewsFromEachPromoter;

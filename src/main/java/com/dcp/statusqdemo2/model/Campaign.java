@@ -16,6 +16,11 @@ import java.util.Set;
 public class Campaign {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int campaignId;
+
+    @ManyToOne
+    @JoinColumn(name="userId", referencedColumnName = "userId")
+    private User userCampaign;
+
     private String platform;
     private int numberOfViews;
     private int viewsFromEachPromoter;
