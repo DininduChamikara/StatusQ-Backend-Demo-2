@@ -3,6 +3,7 @@ package com.dcp.statusqdemo2.service;
 import com.dcp.statusqdemo2.dto.AgeAudienceDTO;
 import com.dcp.statusqdemo2.dto.CampaignDTO;
 import com.dcp.statusqdemo2.dto.EducationAudienceDTO;
+import com.dcp.statusqdemo2.dto.RegionAudienceDTO;
 import com.dcp.statusqdemo2.model.Campaign;
 import com.dcp.statusqdemo2.repo.CampaignRepo;
 import org.modelmapper.ModelMapper;
@@ -22,6 +23,9 @@ public class CampaignService {
 
     @Autowired
     private AgeAudienceService ageAudienceService;
+
+    @Autowired
+    private RegionAudienceService regionAudienceService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -45,6 +49,15 @@ public class CampaignService {
         for(int i = 0; i<campaignDTO.getAgeAudience().size(); i++){
             ageAudienceDTO.setAgeGroup(campaignDTO.getAgeAudience().get(i));
             ageAudienceService.saveAgeAudience(ageAudienceDTO);
+        }
+
+        // Region Audience
+        RegionAudienceDTO regionAudienceDTO = new RegionAudienceDTO();
+        regionAudienceDTO.setCampaignRegionAudience(campaign);
+
+        for(int i = 0; i<campaignDTO.getRegionAudience().size(); i++){
+            regionAudienceDTO.setRegion(campaignDTO.getRegionAudience().get(i));
+            regionAudienceService.saveRegionAudience(regionAudienceDTO);
         }
 
         return campaignDTO;
