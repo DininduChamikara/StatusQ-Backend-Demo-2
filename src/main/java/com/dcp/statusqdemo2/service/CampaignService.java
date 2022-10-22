@@ -29,7 +29,7 @@ public class CampaignService {
         EducationAudienceDTO educationAudienceDTO = new EducationAudienceDTO();
         educationAudienceDTO.setCampaignEducationAudience(campaign);
 
-        System.out.println(campaignDTO.getEducationAudience());
+//        System.out.println(campaignDTO.getEducationAudience());
 
         for(int i = 0; i<campaignDTO.getEducationAudience().size(); i++){
             educationAudienceDTO.setEducationGroup(campaignDTO.getEducationAudience().get(i));
