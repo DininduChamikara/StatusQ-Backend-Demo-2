@@ -1,5 +1,6 @@
 package com.dcp.statusqdemo2.service;
 
+import com.dcp.statusqdemo2.dto.AgeAudienceDTO;
 import com.dcp.statusqdemo2.dto.CampaignDTO;
 import com.dcp.statusqdemo2.dto.EducationAudienceDTO;
 import com.dcp.statusqdemo2.model.Campaign;
@@ -20,6 +21,9 @@ public class CampaignService {
     private EducationAudienceService educationAudienceService;
 
     @Autowired
+    private AgeAudienceService ageAudienceService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     public CampaignDTO saveCampaign(CampaignDTO campaignDTO){
@@ -29,11 +33,18 @@ public class CampaignService {
         EducationAudienceDTO educationAudienceDTO = new EducationAudienceDTO();
         educationAudienceDTO.setCampaignEducationAudience(campaign);
 
-//        System.out.println(campaignDTO.getEducationAudience());
-
         for(int i = 0; i<campaignDTO.getEducationAudience().size(); i++){
             educationAudienceDTO.setEducationGroup(campaignDTO.getEducationAudience().get(i));
             educationAudienceService.saveEducationAudience(educationAudienceDTO);
+        }
+
+        // Age Audience
+        AgeAudienceDTO ageAudienceDTO = new AgeAudienceDTO();
+        ageAudienceDTO.setCampaignAgeAudience(campaign);
+
+        for(int i = 0; i<campaignDTO.getAgeAudience().size(); i++){
+            ageAudienceDTO.setAgeGroup(campaignDTO.getAgeAudience().get(i));
+            ageAudienceService.saveAgeAudience(ageAudienceDTO);
         }
 
         return campaignDTO;

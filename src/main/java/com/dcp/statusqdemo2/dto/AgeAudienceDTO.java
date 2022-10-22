@@ -6,13 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class EducationAudienceDTO {
+public class AgeAudienceDTO {
     private int recordId;
-    private Campaign campaignEducationAudience;
-    private String educationGroup;
+    private Campaign campaignAgeAudience;
+    private String ageGroup;
 }

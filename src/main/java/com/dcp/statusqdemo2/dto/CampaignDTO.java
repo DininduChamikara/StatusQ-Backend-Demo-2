@@ -23,5 +23,5 @@ public class CampaignDTO {
     private String state;
 
     private List<String> educationAudience;
-
+    private List<String> ageAudience;
 }
