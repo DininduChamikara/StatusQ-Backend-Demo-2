@@ -36,4 +36,7 @@ public class Campaign {
     @OneToMany(mappedBy = "campaignRegionAudience")
     private Set<RegionAudience> regionAudiences;
 
+    @OneToMany(mappedBy = "campaignLanguageAudience")
+    private Set<LanguageAudience> languageAudiences;
+
 }
