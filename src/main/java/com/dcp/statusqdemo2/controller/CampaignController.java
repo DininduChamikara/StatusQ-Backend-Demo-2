@@ -15,5 +15,7 @@ public class CampaignController {
     @PostMapping("/saveCampaign")
     public CampaignDTO saveCampaign(@RequestBody CampaignDTO campaignDTO){
         return campaignService.saveCampaign(campaignDTO);
+//        System.out.println(campaignDTO.getEducationAudience());
+//        return campaignDTO;
     }
 }
