@@ -28,6 +28,9 @@ public class CampaignService {
     private LanguageAudienceService languageAudienceService;
 
     @Autowired
+    private GenderAudienceService genderAudienceService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     public CampaignDTO saveCampaign(CampaignDTO campaignDTO){
@@ -67,6 +70,15 @@ public class CampaignService {
         for(int i = 0; i<campaignDTO.getLanguageAudience().size(); i++){
             languageAudienceDTO.setLanguage(campaignDTO.getLanguageAudience().get(i));
             languageAudienceService.saveLanguageAudience(languageAudienceDTO);
+        }
+
+        // Gender Audience
+        GenderAudienceDTO genderAudienceDTO = new GenderAudienceDTO();
+        genderAudienceDTO.setCampaignGenderAudience(campaign);
+
+        for(int i = 0; i<campaignDTO.getGenderAudience().size(); i++){
+            genderAudienceDTO.setGenderGroup(campaignDTO.getGenderAudience().get(i));
+            genderAudienceService.saveGenderAudience(genderAudienceDTO);
         }
 
         return campaignDTO;

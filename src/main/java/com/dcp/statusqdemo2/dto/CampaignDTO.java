@@ -26,4 +26,5 @@ public class CampaignDTO {
     private List<String> ageAudience;
     private List<String> regionAudience;
     private List<String> languageAudience;
+    private List<String> genderAudience;
 }
