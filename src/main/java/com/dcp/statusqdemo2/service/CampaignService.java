@@ -25,6 +25,7 @@ public class CampaignService {
     public CampaignDTO saveCampaign(CampaignDTO campaignDTO){
         Campaign campaign = campaignRepo.save(modelMapper.map(campaignDTO, Campaign.class));
 
+        // Education Audience
         EducationAudienceDTO educationAudienceDTO = new EducationAudienceDTO();
         educationAudienceDTO.setCampaignEducationAudience(campaign);
         educationAudienceDTO.setEducationGroup("Group 1");
