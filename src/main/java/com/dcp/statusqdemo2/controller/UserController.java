@@ -12,9 +12,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/getUser")
+    @GetMapping("/getUsers")
     public String getUser(){
         return "statusQ";
+    }
+
+    @GetMapping("/getUser/{email}/{password}")
+    public UserDTO getUserByEmailAndPassword(@PathVariable("email") String email,@PathVariable("password") String password){
+        return userService.getUserByEmailAndPassword(email,password);
     }
 
     @PostMapping("/saveUser")
