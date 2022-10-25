@@ -22,4 +22,14 @@ public class UserService {
         userRepo.save(modelMapper.map(userDTO, User.class));
         return userDTO;
     }
+
+    public UserDTO getUserByEmailAndPassword(String email,String password){
+        User user = userRepo.findUserByEmailAndPassword(email,password);
+        return modelMapper.map(user,UserDTO.class);
+    }
+
+    public UserDTO getUserByUserId(int userId){
+        User user = userRepo.findUserByUserId(userId);
+        return modelMapper.map(user,UserDTO.class);
+    }
 }
