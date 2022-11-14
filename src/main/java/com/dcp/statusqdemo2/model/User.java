@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -21,6 +18,8 @@ public class User {
     private int userId;
     private String firstname;
     private String lastname;
+
+    @Column(unique = true)
     private String email;
     private String password;
     private String profileImageURL;
