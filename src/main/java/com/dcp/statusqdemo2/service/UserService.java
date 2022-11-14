@@ -32,4 +32,9 @@ public class UserService {
         User user = userRepo.findUserByUserId(userId);
         return modelMapper.map(user,UserDTO.class);
     }
+
+    public UserDTO getUserByEmail(String email){
+        User user = userRepo.findUserByEmail(email);
+        return modelMapper.map(user,UserDTO.class);
+    }
 }
