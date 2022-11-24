@@ -2,6 +2,7 @@ package com.dcp.statusqdemo2.controller;
 
 import com.dcp.statusqdemo2.dto.ReviewDTO;
 import com.dcp.statusqdemo2.dto.ReviewResponseDTO;
+import com.dcp.statusqdemo2.dto.SaveReviewOutputDTO;
 import com.dcp.statusqdemo2.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,22 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @PostMapping("/saveReview")
-    public ReviewDTO saveReview(@RequestBody ReviewDTO reviewDTO){
-        return reviewService.saveReview(reviewDTO);
+    public SaveReviewOutputDTO saveReview(@RequestBody ReviewDTO reviewDTO){
+        SaveReviewOutputDTO saveReviewOutputDTO = new SaveReviewOutputDTO();
+
+        try {
+            saveReviewOutputDTO.setReviewDTO(reviewService.saveReview(reviewDTO));
+            saveReviewOutputDTO.setResponseCode("00");
+            saveReviewOutputDTO.setStatus("success");
+            saveReviewOutputDTO.setMessage("You are successfully submitted the review");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            saveReviewOutputDTO.setResponseCode("1000");
+            saveReviewOutputDTO.setStatus("failure");
+            saveReviewOutputDTO.setMessage("Something went wrong, try again");
+        } finally {
+            return saveReviewOutputDTO;
+        }
     }
 
     @GetMapping("/getAllReviewResponses")
