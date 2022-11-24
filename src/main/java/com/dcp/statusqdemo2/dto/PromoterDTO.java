@@ -1,13 +1,13 @@
 package com.dcp.statusqdemo2.dto;
 
+import com.dcp.statusqdemo2.model.PromoterAudienceCategory;
+import com.dcp.statusqdemo2.model.PromoterGenderAudience;
 import com.dcp.statusqdemo2.model.SocialMedia;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +32,8 @@ public class PromoterDTO {
     private String educationalCategory;
 
     private List<SocialMedia> socialMediaList;
+    private List<PromoterGenderAudience> promoterGenderAudienceList;
+    private List<PromoterAudienceCategory> promoterAudienceCategoryList;
 
     private String state;
 }

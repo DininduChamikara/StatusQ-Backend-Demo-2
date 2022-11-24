@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -40,6 +38,12 @@ public class Promoter {
 
     @OneToMany(mappedBy = "promoterSocialMedia")
     private Set<SocialMedia> socialMediaSet;
+
+    @OneToMany(mappedBy = "promoterPromoterGenderAudience")
+    private Set<PromoterGenderAudience> promoterGenderAudienceSet;
+
+    @OneToMany(mappedBy = "promoterPromoterAudienceCategory")
+    private Set<PromoterAudienceCategory> promoterAudienceCategorySet;
 
     private String state;
 }
