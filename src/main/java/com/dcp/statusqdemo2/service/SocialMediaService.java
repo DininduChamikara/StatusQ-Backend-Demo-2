@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static java.lang.String.valueOf;
+
 @Service
 public class SocialMediaService {
 
@@ -32,18 +34,32 @@ public class SocialMediaService {
         return modelMapper.map(socialMedia, SocialMediaDTO.class);
     }
 
-    public ArrayList<SocialMediaResponseDTO> getPromoterIdList(String platform, int accessibleViewsCount){
+    public List<SocialMediaResponseDTO> getPromoterIdList(String platform, int accessibleViewsCount){
         ArrayList<SocialMediaResponseDTO> promoterIdDataList = socialMediaRepo.getPromoterIdList(platform, accessibleViewsCount);
 
         Iterator itr = promoterIdDataList.iterator();
 
+        List <SocialMediaResponseDTO> socialMediaResponseDTOList = new ArrayList<>();
+
         while (itr.hasNext()){
             Object[] obj = (Object[]) itr.next();
 
-            String platformRes = String.valueOf(obj[2]);
-            System.out.println(platformRes);
+            SocialMediaResponseDTO socialMediaResponseDTO = new SocialMediaResponseDTO();
+
+            socialMediaResponseDTO.setRecordId(Integer.parseInt(valueOf(obj[0])));
+            socialMediaResponseDTO.setPromoterId(Integer.parseInt(valueOf(obj[1])));
+            socialMediaResponseDTO.setPlatform(valueOf(obj[2]));
+            socialMediaResponseDTO.setAccessibleViewsCount(Integer.parseInt(valueOf(obj[3])));
+
+//            String platformRes = String.valueOf(obj[2]);
+//            System.out.println(platformRes);
+
+            socialMediaResponseDTOList.add(socialMediaResponseDTO);
         }
 
-        return promoterIdDataList;
+//        System.out.println(socialMediaResponseDTOList);
+
+//        return promoterIdDataList;
+        return socialMediaResponseDTOList;
     }
 }

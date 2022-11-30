@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class SocialMediaResponseDTO {
     private int recordId;
-    private String promoterId;
+    private int promoterId;
     private String platform;
     private int accessibleViewsCount;
 }
