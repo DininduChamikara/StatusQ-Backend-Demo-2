@@ -1,6 +1,7 @@
 package com.dcp.statusqdemo2.model;
 
 import com.dcp.statusqdemo2.model.Promoter;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class PromoterAudienceCategory {
 
     @ManyToOne
     @JoinColumn(name="promoterId", referencedColumnName = "promoterId")
+    @JsonManagedReference
     private Promoter promoterPromoterAudienceCategory;
 
     private String platform;
