@@ -1,11 +1,12 @@
 package com.dcp.statusqdemo2.controller;
 
-import com.dcp.statusqdemo2.dto.CampaignDTO;
-import com.dcp.statusqdemo2.dto.PromoterDTO;
-import com.dcp.statusqdemo2.dto.SavePromoterOutputDTO;
+import com.dcp.statusqdemo2.dto.*;
 import com.dcp.statusqdemo2.service.PromoterService;
+import com.dcp.statusqdemo2.service.SocialMediaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/promoter")
@@ -14,6 +15,9 @@ public class PromoterController {
 
     @Autowired
     private PromoterService promoterService;
+
+    @Autowired
+    private SocialMediaService socialMediaService;
 
     @PostMapping("/savePromoter")
     public SavePromoterOutputDTO savePromoter(@RequestBody PromoterDTO promoterDTO){
@@ -33,6 +37,14 @@ public class PromoterController {
             return savePromoterOutputDTO;
         }
 //        return promoterService.savePromoter(promoterDTO);
+    }
+
+    @PostMapping("/getPromotersList")
+    public List<SocialMediaResponseDTO> getPromotersList(@RequestBody PromoterListRequestDTO promoterListRequestDTO){
+
+        List<SocialMediaResponseDTO> promoterIdDataList = socialMediaService.getPromoterIdList(promoterListRequestDTO.getPlatform(), promoterListRequestDTO.getMinAccessibleViews());
+
+        return promoterIdDataList;
     }
 
 }

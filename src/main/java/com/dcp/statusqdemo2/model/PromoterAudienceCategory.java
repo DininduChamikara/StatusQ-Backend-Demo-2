@@ -21,7 +21,6 @@ public class PromoterAudienceCategory {
 
     @ManyToOne
     @JoinColumn(name="promoterId", referencedColumnName = "promoterId")
-    @JsonManagedReference
     private Promoter promoterPromoterAudienceCategory;
 
     private String platform;

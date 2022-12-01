@@ -14,7 +14,7 @@ public class PromoterAudienceCategoryController {
    private PromoterAudienceCategoryService promoterAudienceCategoryService;
 
    @GetMapping("/getAudienceCount/{promoterId}/{categoryType}/{category}/{platform}")
-   public int findByPromoterIdAndCategoryTypeAndCategory(@PathVariable("promoterId") int promoterId, @PathVariable("categoryType") String categoryType, @PathVariable("category") String category, @PathVariable("platform") String platform){
+   public int findCountByPromoterIdAndCategoryTypeAndCategory(@PathVariable("promoterId") int promoterId, @PathVariable("categoryType") String categoryType, @PathVariable("category") String category, @PathVariable("platform") String platform){
       return promoterAudienceCategoryService.getAudienceCount(promoterId, categoryType, category, platform);
    }
 
