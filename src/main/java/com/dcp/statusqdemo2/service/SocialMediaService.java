@@ -51,15 +51,9 @@ public class SocialMediaService {
             socialMediaResponseDTO.setPlatform(valueOf(obj[2]));
             socialMediaResponseDTO.setAccessibleViewsCount(Integer.parseInt(valueOf(obj[3])));
 
-//            String platformRes = String.valueOf(obj[2]);
-//            System.out.println(platformRes);
-
             socialMediaResponseDTOList.add(socialMediaResponseDTO);
         }
 
-//        System.out.println(socialMediaResponseDTOList);
-
-//        return promoterIdDataList;
         return socialMediaResponseDTOList;
     }
 }
