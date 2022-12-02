@@ -47,9 +47,9 @@ public class SocialMediaService {
             SocialMediaResponseDTO socialMediaResponseDTO = new SocialMediaResponseDTO();
 
             socialMediaResponseDTO.setRecordId(Integer.parseInt(valueOf(obj[0])));
-            socialMediaResponseDTO.setPromoterId(Integer.parseInt(valueOf(obj[1])));
+            socialMediaResponseDTO.setPromoterId(Integer.parseInt(valueOf(obj[3])));
             socialMediaResponseDTO.setPlatform(valueOf(obj[2]));
-            socialMediaResponseDTO.setAccessibleViewsCount(Integer.parseInt(valueOf(obj[3])));
+            socialMediaResponseDTO.setAccessibleViewsCount(Integer.parseInt(valueOf(obj[1])));
 
             socialMediaResponseDTOList.add(socialMediaResponseDTO);
         }

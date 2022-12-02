@@ -1,6 +1,7 @@
 package com.dcp.statusqdemo2.controller;
 
 import com.dcp.statusqdemo2.dto.*;
+import com.dcp.statusqdemo2.service.PromoterAudienceCategoryService;
 import com.dcp.statusqdemo2.service.PromoterService;
 import com.dcp.statusqdemo2.service.SocialMediaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class PromoterController {
 
     @Autowired
     private SocialMediaService socialMediaService;
+
+    @Autowired
+    private PromoterAudienceCategoryService promoterAudienceCategoryService;
+
 
     @PostMapping("/savePromoter")
     public SavePromoterOutputDTO savePromoter(@RequestBody PromoterDTO promoterDTO){
@@ -43,6 +48,27 @@ public class PromoterController {
     public List<SocialMediaResponseDTO> getPromotersList(@RequestBody PromoterListRequestDTO promoterListRequestDTO){
 
         List<SocialMediaResponseDTO> promoterIdDataList = socialMediaService.getPromoterIdList(promoterListRequestDTO.getPlatform(), promoterListRequestDTO.getMinAccessibleViews());
+
+        double audienceMatchingIndex = 0;
+        double count = 0;
+        double matchIndexForEducation = 0.0;
+
+        for(int i=0; i<promoterIdDataList.size(); i++){
+            // education matching
+            List educationList = promoterListRequestDTO.getEducationAudience();
+            for (int j=0; j<educationList.size(); j++){
+                try{
+                    count = promoterAudienceCategoryService.getAudienceCount(promoterIdDataList.get(i).getPromoterId(), "education", educationList.get(j).toString(), promoterListRequestDTO.getPlatform());
+                    matchIndexForEducation = matchIndexForEducation + (count/promoterListRequestDTO.getMinAccessibleViews());
+                }catch (Exception e){
+
+                }
+            }
+//            for (int j=0; j<ageAudience)
+        }
+
+        System.out.println("matchIndexForEducation is " + matchIndexForEducation);
+
 
         return promoterIdDataList;
     }
