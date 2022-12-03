@@ -151,16 +151,20 @@ public class PromoterController {
             }
         });
 
-//        ArrayList<ResponsePromoterListItemDTO> filteredResponsePromoterList = new ArrayList<>();
-//
-//        for (int i=0; i<5; i++){
-//            filteredResponsePromoterList.add(responsePromoterList.get(i));
-//        }
+        ArrayList<ResponsePromoterListItemDTO> filteredResponsePromoterList = new ArrayList<>();
+
+        for (int i=0; i<promoterListRequestDTO.getResponseCount(); i++){
+            try {
+                filteredResponsePromoterList.add(responsePromoterList.get(i));
+            }catch (Exception e){
+
+            }
+        }
 
         // final response
         List<PromoterListFinalResponseItemDTO> finalResponseItemDTOList = new ArrayList<>();
 
-        for (int i=0; i<responsePromoterList.size(); i++){
+        for (int i=0; i<filteredResponsePromoterList.size(); i++){
 
             List<CategoryCountDTO> educationCategoryDTOList = new ArrayList<>();
             List<CategoryCountDTO> ageCategoryDTOList = new ArrayList<>();
@@ -171,7 +175,7 @@ public class PromoterController {
             for(int j=0; j<educationCategories.length; j++){
                 CategoryCountDTO categoryCountDTO = new CategoryCountDTO();
                 try{
-                    categoryCount = promoterAudienceCategoryService.getAudienceCount(responsePromoterList.get(i).getPromoterId(), "education", educationCategories[j], promoterListRequestDTO.getPlatform());
+                    categoryCount = promoterAudienceCategoryService.getAudienceCount(filteredResponsePromoterList.get(i).getPromoterId(), "education", educationCategories[j], promoterListRequestDTO.getPlatform());
 
                     categoryCountDTO.setCategory(educationCategories[j]);
                     categoryCountDTO.setCount(categoryCount);
@@ -188,7 +192,7 @@ public class PromoterController {
             for(int j=0; j<ageCategories.length; j++){
                 CategoryCountDTO categoryCountDTO = new CategoryCountDTO();
                 try{
-                    categoryCount = promoterAudienceCategoryService.getAudienceCount(responsePromoterList.get(i).getPromoterId(), "age", ageCategories[j], promoterListRequestDTO.getPlatform());
+                    categoryCount = promoterAudienceCategoryService.getAudienceCount(filteredResponsePromoterList.get(i).getPromoterId(), "age", ageCategories[j], promoterListRequestDTO.getPlatform());
 
                     categoryCountDTO.setCategory(ageCategories[j]);
                     categoryCountDTO.setCount(categoryCount);
@@ -205,7 +209,7 @@ public class PromoterController {
             for(int j=0; j<regionCategories.length; j++){
                 CategoryCountDTO categoryCountDTO = new CategoryCountDTO();
                 try{
-                    categoryCount = promoterAudienceCategoryService.getAudienceCount(responsePromoterList.get(i).getPromoterId(), "region", regionCategories[j], promoterListRequestDTO.getPlatform());
+                    categoryCount = promoterAudienceCategoryService.getAudienceCount(filteredResponsePromoterList.get(i).getPromoterId(), "region", regionCategories[j], promoterListRequestDTO.getPlatform());
 
                     categoryCountDTO.setCategory(regionCategories[j]);
                     categoryCountDTO.setCount(categoryCount);
@@ -222,7 +226,7 @@ public class PromoterController {
             for(int j=0; j<languageCategories.length; j++){
                 CategoryCountDTO categoryCountDTO = new CategoryCountDTO();
                 try{
-                    categoryCount = promoterAudienceCategoryService.getAudienceCount(responsePromoterList.get(i).getPromoterId(), "language", languageCategories[j], promoterListRequestDTO.getPlatform());
+                    categoryCount = promoterAudienceCategoryService.getAudienceCount(filteredResponsePromoterList.get(i).getPromoterId(), "language", languageCategories[j], promoterListRequestDTO.getPlatform());
 
                     categoryCountDTO.setCategory(languageCategories[j]);
                     categoryCountDTO.setCount(categoryCount);
@@ -238,14 +242,14 @@ public class PromoterController {
             double malePercentage = 0;
 
             try {
-                malePercentage = promoterGenderAudienceService.getMalePercentage(responsePromoterList.get(i).getPromoterId(), promoterListRequestDTO.getPlatform());
+                malePercentage = promoterGenderAudienceService.getMalePercentage(filteredResponsePromoterList.get(i).getPromoterId(), promoterListRequestDTO.getPlatform());
             }catch (Exception e){
 
             }
 
 
             PromoterListFinalResponseItemDTO promoterListFinalResponseItemDTO = new PromoterListFinalResponseItemDTO();
-            promoterListFinalResponseItemDTO.setPromoterId(responsePromoterList.get(i).getPromoterId());
+            promoterListFinalResponseItemDTO.setPromoterId(filteredResponsePromoterList.get(i).getPromoterId());
             promoterListFinalResponseItemDTO.setPlatform(promoterListRequestDTO.getPlatform());
 
             promoterListFinalResponseItemDTO.setEducation(educationCategoryDTOList);
