@@ -1,5 +1,6 @@
 package com.dcp.statusqdemo2.service;
 
+import com.dcp.statusqdemo2.dto.CategoryCountDTO;
 import com.dcp.statusqdemo2.dto.PromoterAudienceCategoryDTO;
 import com.dcp.statusqdemo2.dto.PromoterGenderAudienceDTO;
 import com.dcp.statusqdemo2.dto.UserDTO;
@@ -30,5 +31,10 @@ public class PromoterAudienceCategoryService {
     public int getAudienceCount(int promoterId, String categoryType, String category, String platform){
         int count = promoterAudienceCategoryRepo.getAudienceCount(promoterId, categoryType, category, platform);
         return count;
+    }
+
+    public CategoryCountDTO getCategoryCount(int promoterId, String platform, String categoryType){
+        CategoryCountDTO categoryCountDTO = promoterAudienceCategoryRepo. getCategoryCount(promoterId, platform, categoryType);
+        return categoryCountDTO;
     }
 }
