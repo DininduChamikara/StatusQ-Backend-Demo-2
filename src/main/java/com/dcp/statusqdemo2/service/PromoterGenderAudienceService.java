@@ -21,4 +21,9 @@ public class PromoterGenderAudienceService {
         promoterGenderAudienceRepo.save(modelMapper.map(promoterGenderAudienceDTO, PromoterGenderAudience.class));
         return promoterGenderAudienceDTO;
     }
+
+    public double getMalePercentage(int promoterId, String platform){
+        double malePercentage = promoterGenderAudienceRepo.getMalePercentage(promoterId, platform);
+        return malePercentage;
+    }
 }
