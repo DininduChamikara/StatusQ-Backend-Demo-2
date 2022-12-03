@@ -19,5 +19,6 @@ public class PromoterListRequestDTO {
     private List regionalAudience;
     private List languageAudience;
     private List genderAudience;
+    private int responseCount;
     private String state;
 }
