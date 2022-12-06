@@ -49,7 +49,7 @@ public class PromoterController {
     }
 
     @PostMapping("/getPromotersList")
-    public List<PromoterListFinalResponseItemDTO> getPromotersList(@RequestBody PromoterListRequestDTO promoterListRequestDTO){
+    public GetPromoterListResponseDTO getPromotersList(@RequestBody PromoterListRequestDTO promoterListRequestDTO){
 
         List<SocialMediaResponseDTO> promoterIdDataList = socialMediaService.getPromoterIdList(promoterListRequestDTO.getPlatform(), promoterListRequestDTO.getMinAccessibleViews());
 
@@ -264,8 +264,15 @@ public class PromoterController {
 
         }
 
+        GetPromoterListResponseDTO getPromoterListResponseDTO = new GetPromoterListResponseDTO();
+        getPromoterListResponseDTO.setResponseCode("00");
+        getPromoterListResponseDTO.setMessage("The most suitable promoters list is generated");
+        getPromoterListResponseDTO.setStatus("success");
+        getPromoterListResponseDTO.setPromoterListFinalResponseItemDTO(finalResponseItemDTOList);
 
-        return finalResponseItemDTOList;
+
+//        return finalResponseItemDTOList;
+        return getPromoterListResponseDTO;
     }
 
 }
